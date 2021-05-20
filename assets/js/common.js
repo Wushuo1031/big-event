@@ -1,45 +1,59 @@
-// 全局配置请求根路径
-let baseURL = 'http://www.itcbc.com:8080';
+// axios 全局配置
+let baseURL = 'http://www.itcbc.com:8080'
+// const baseURL = 'http://localhost:3000'
 axios.defaults.baseURL = baseURL;
 
-// 添加请求拦截器
-axios.interceptors.request.use(function (config) {
-  // 在发送请求之前做些什么
-  // 统一加请求头 Authorization
-  // console.log(config);
-  let url = config.url;
-  if (url.includes('/my/')) {
-    config.headers['Authorization'] = localStorage.getItem('token');
+// 请求拦截器
+axios.interceptors.request.use(
+  config => {
+    // 在发送请求之前做些什么
+    // console.log(config);
+    if (config.url.includes('/my/')) {
+      config.headers['Authorization'] = localStorage.getItem('token');
+    }
+    return config;
+  },
+  error => {
+    // 对请求错误做些什么
+    return Promise.reject(error);
   }
-  return config;
-}, function (error) {
-  // 对请求错误做些什么
-  return Promise.reject(error);
-});
+);
 
 // 添加响应拦截器
-// axios.interceptors.response.use(函数1, 函数2);
-// 函数1，处理的是成功状态（状态码是2xx, 300）的响应
-// 函数2，处理的失败状态（响应状态码是4xx, 5xx）的响应
 axios.interceptors.response.use(
-  function (response) {
-    // 对响应数据做点什么
+  response => {
+    // 响应状态码 2xx 或 3xx , 进入这里
+    // 拦截住响应结果(response)，可以对响应结果进行处理
+    // response.aa = 'hello world';
     // console.log(response);
     let { status, message } = response.data;
-    if (status === 1) layer.msg(message);
+    if (status === 1) {
+      layer.msg(message);
+    }
     return response;
   },
-  function (error) {
-    // 对响应错误做点什么
-    // console.log(error.response);
-    let { status, message } = error.response.data;
-    if (status === 1 && message === '身份认证失败！') {
-      // 移除过期的，或者假的token
-      localStorage.removeItem('token');
-      // 跳转到登录页
-      location.href = './login.html';
+  error => {
+    // 响应状态码 4xx 或 5xx ,进这里
+    // 拦截住响应结果，出错时的结果，进行错误处理
+    // 如果有响应结果的话，获取响应结果，根据响应结果判断 token 是否是假的或者是过期的
+    // console.log(error.response); // 表示响应结果
+    if (error.response) {
+      // let {name, age} = {name: 'zs', age: 20};
+      let { status, message } = error.response.data;
+      if (status === 1 && message === '身份认证失败！') {
+        // 满足这个条件，说明用户使用了一个假的token或者过期的token
+        localStorage.removeItem('token'); // 移除假token
+        location.href = './login.html';
+        if (location.pathname === '/index.html') {
+          location.href = './login.html';
+        } else {
+          window.parent.location.href = '../login.html';
+        }
+      } else {
+        // 其他错误，直接给出提示即可
+        layer.msg(message);
+      }
     }
-    layer.msg(message)
     return Promise.reject(error);
   }
 );

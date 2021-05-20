@@ -1,5 +1,5 @@
 <script>
-  // 判断本地存储中是否有token（有token，说明登录了；没有token，说明没有登录）
+  // 判断本地存储中是否有token
   if (localStorage.getItem('token') === null) {
     location.href = './login.html';
   }
@@ -47,27 +47,28 @@
       <div class="layui-side-scroll">
         <div class="userinfo" href="javascript:;">
           <span class="user-avatar">L</span>
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          <img src="" class="layui-nav-img">
           &nbsp;欢迎你&nbsp;<span class="username"></span>
         </div>
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree" lay-filter="test" lay-shrink="all">
-          <li class="layui-nav-item layui-this"><a href="javascript:;"><i class="layui-icon layui-icon-home"></i>首页</a>
+          <li class="layui-nav-item layui-this"><a href="./home/dashboard.html" target="fm"><i
+                class="layui-icon layui-icon-home"></i>首页</a>
           </li>
           <li class="layui-nav-item">
             <a class="" href="javascript:;"><i class="layui-icon layui-icon-form"></i>文章管理</a>
             <dl class="layui-nav-child">
-              <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>类别管理</a></dd>
-              <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>文章列表</a></dd>
-              <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>添加文章</a></dd>
+              <dd><a href="./article/category.html" target="fm"><i class="layui-icon layui-icon-app"></i>类别管理</a></dd>
+              <dd><a href="./article/list.html" target="fm"><i class="layui-icon layui-icon-app"></i>文章列表</a></dd>
+              <dd><a href="./article/add.html" target="fm"><i class="layui-icon layui-icon-app"></i>添加文章</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item">
             <a href="javascript:;"><i class="layui-icon layui-icon-username"></i>个人中心</a>
             <dl class="layui-nav-child">
               <dd><a href="./user/userinfo.html" target="fm"><i class="layui-icon layui-icon-app"></i>基本资料</a></dd>
-              <dd><a href="./user/repwd.html" target="fm" ><i class="layui-icon layui-icon-app"></i>重置密码</a></dd>
-              <dd><a href="./user/avatar.html" target="fm" ><i class="layui-icon layui-icon-app"></i>更换头像</a></dd>
+              <dd><a href="./user/repwd.html" target="fm"><i class="layui-icon layui-icon-app"></i>重置密码</a></dd>
+              <dd><a href="./user/avatar.html" target="fm"><i class="layui-icon layui-icon-app"></i>更换头像</a></dd>
             </dl>
           </li>
 
@@ -86,7 +87,7 @@
       © layui.com - 底部固定区域
     </div>
   </div>
-  <script src="./assets/lib/layui/layui.js"></script>
+  <script src="./assets/lib/layui/layui.all.js"></script>
   <script src="./assets/lib/jquery.js"></script>
   <script src="./assets/lib/axios.js"></script>
   <script src="./assets/js/common.js"></script>

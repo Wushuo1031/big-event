@@ -34,15 +34,6 @@ $('.login form').on('submit', function (e) {
       });
     }
   });
-
-  // $.ajax({
-  //   type: 'POST',
-  //   url: 'http://www.itcbc.com:8080/api/login',
-  //   data: data,
-  //   success: function (res) {
-
-  //   }
-  // });
 })
 
 
