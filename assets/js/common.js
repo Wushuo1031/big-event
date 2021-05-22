@@ -1,7 +1,8 @@
 // axios 全局配置
-let baseURL = 'http://www.itcbc.com:8080'
+const baseURL = 'http://www.itcbc.com:8080'
 // const baseURL = 'http://localhost:3000'
 axios.defaults.baseURL = baseURL;
+// axios.defaults.headers['Authorization'] = localStorage.getItem('token')
 
 // 请求拦截器
 axios.interceptors.request.use(

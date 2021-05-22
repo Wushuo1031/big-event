@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <!-- 加载css或js、原则都是先加载别人的，最后加载自己的 -->
+  <!-- 自己的css放到后面，权重就会大一点，如果你觉得插件的css样式不是你想要的，可以自己写样式进行覆盖修改 -->
   <link rel="stylesheet" href="./assets/lib/layui/css/layui.css">
   <link rel="stylesheet" href="./assets/css/login.css">
 </head>
@@ -24,7 +26,7 @@
       <!-- 第一项：用户名 -->
       <div class="layui-form-item">
         <i class="layui-icon layui-icon-username"></i>
-        <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+        <input type="text" name="username" required lay-verify="required" placeholder="请输入标题" autocomplete="off"
           class="layui-input">
       </div>
       <!-- 第二项：密码 -->
@@ -35,7 +37,7 @@
       </div>
       <!-- 第三项：按钮 -->
       <div class="layui-form-item">
-        <button class="layui-btn layui-btn-fluid layui-bg-blue" lay-submit lay-filter="formDemo">登录</button>
+        <button class="layui-btn layui-bg-blue layui-btn-fluid" lay-submit lay-filter="formDemo">登录</button>
       </div>
       <!-- 第四项：超链接 -->
       <div class="layui-form-item">
@@ -55,19 +57,19 @@
       <!-- 第一项：用户名 -->
       <div class="layui-form-item">
         <i class="layui-icon layui-icon-username"></i>
-        <input type="text" name="username" required lay-verify="required" placeholder="请输入用户名" autocomplete="off"
+        <input type="text" name="username" required lay-verify="required|uname" placeholder="请输入用户名" autocomplete="off"
           class="layui-input">
       </div>
       <!-- 第二项：密码 -->
       <div class="layui-form-item">
         <i class="layui-icon layui-icon-password"></i>
-        <input type="text" name="password" required lay-verify="required|len" placeholder="请输入密码" autocomplete="off"
-          class="layui-input pwd">
+        <input type="password" name="password" required lay-verify="required|len" placeholder="请输入密码" autocomplete="off"
+          class="layui-input">
       </div>
       <!-- 第三项：确认密码 -->
       <div class="layui-form-item">
         <i class="layui-icon layui-icon-password"></i>
-        <input type="text" required lay-verify="required|len|same" placeholder="请输入确认密码" autocomplete="off"
+        <input type="password" required lay-verify="required|same" placeholder="请输入确认密码" autocomplete="off"
           class="layui-input">
       </div>
       <!-- 第四项：按钮 -->
@@ -83,12 +85,10 @@
   </div>
   <!-- 注册的盒子 end -->
 
-
-  <script src="./assets/lib/layui/layui.js"></script>
+  <!-- 在这里加载js文件：因为代码从上到下运行，等到js代码运行的时候，html标签加载完毕了，所以可以不写入口函数 -->
   <script src="./assets/lib/jquery.js"></script>
   <script src="./assets/lib/axios.js"></script>
-  <!-- <script src="./assets/js/login.js"></script> -->
-  <!-- <script src="./assets/js/login1.js"></script> -->
+  <script src="./assets/lib/layui/layui.all.js"></script>
   <script src="./assets/js/common.js"></script>
   <script src="./assets/js/login.js"></script>
 </body>
