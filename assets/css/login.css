@@ -1,7 +1,7 @@
 html,
 body {
   height: 100%;
-  background: url(../images/6666.jpg);
+  background: url(../images/6666.jpg) 100%;
 }
 
 body {
@@ -16,12 +16,11 @@ body {
 .box {
   height: 310px;
   width: 400px;
-  /* background-color: #f5da78; */
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: 0px 0px 23px 5px;
+  box-shadow: 0px 0px 30px 5px;
 }
 
 .title {
